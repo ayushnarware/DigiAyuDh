@@ -100,11 +100,97 @@ export function AdminSettingsPage() {
           <h1 className="text-2xl font-bold">Settings</h1>
           <p className="text-muted-foreground">Configure system and admin preferences</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Settings page coming soon</p>
-          </CardContent>
-        </Card>
+
+        <div className="grid gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>System Configuration</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Company Name</label>
+                <input
+                  type="text"
+                  defaultValue="DigiAyuDh"
+                  className="w-full px-4 py-2 rounded-lg border border-input bg-background"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Support Email</label>
+                <input
+                  type="email"
+                  defaultValue="support@digiayudh.com"
+                  className="w-full px-4 py-2 rounded-lg border border-input bg-background"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Timezone</label>
+                <select className="w-full px-4 py-2 rounded-lg border border-input bg-background">
+                  <option>IST (UTC+5:30)</option>
+                  <option>EST (UTC-5:00)</option>
+                  <option>GMT (UTC+0:00)</option>
+                </select>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>API Configuration</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">API Base URL</label>
+                <input
+                  type="text"
+                  defaultValue="https://api.digiayudh.com"
+                  className="w-full px-4 py-2 rounded-lg border border-input bg-background"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">API Key</label>
+                <input
+                  type="password"
+                  defaultValue="••••••••••••••••"
+                  className="w-full px-4 py-2 rounded-lg border border-input bg-background"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Email Configuration</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Email Provider</label>
+                <select className="w-full px-4 py-2 rounded-lg border border-input bg-background">
+                  <option>AWS SES</option>
+                  <option>SendGrid</option>
+                  <option>Mailgun</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">From Address</label>
+                <input
+                  type="email"
+                  defaultValue="noreply@digiayudh.com"
+                  className="w-full px-4 py-2 rounded-lg border border-input bg-background"
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="flex justify-end gap-2">
+            <button className="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted">
+              Reset to Defaults
+            </button>
+            <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+              Save Settings
+            </button>
+          </div>
+        </div>
       </div>
     </PortalLayout>
   );
