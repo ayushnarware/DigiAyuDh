@@ -49,10 +49,9 @@ const EmployeeProfilePage = lazy(() =>
 
 const AdminDashboardPage = lazy(() => import('@/features/admin/pages/admin-dashboard-page'));
 const AdminClientsPage = lazy(() =>
-  import('@/features/admin/pages/client-management-page'),
-);
-const AdminOperationalPage = lazy(() =>
-  import('@/features/admin/pages/admin-operational-page'),
+  import('@/features/admin/pages/admin-dashboard-page').then((m) => ({
+    default: m.AdminClientsPage,
+  })),
 );
 const AdminProjectsPage = lazy(() =>
   import('@/features/admin/pages/admin-dashboard-page').then((m) => ({
@@ -77,15 +76,6 @@ const SuperAdminTenantsPage = lazy(() =>
   import('@/features/super-admin/pages/super-admin-dashboard-page').then((m) => ({
     default: m.SuperAdminTenantsPage,
   })),
-);
-const SuperAdminCompanyManagementPage = lazy(() =>
-  import('@/features/super-admin/pages/company-management-page'),
-);
-const SuperAdminAdminManagementPage = lazy(() =>
-  import('@/features/super-admin/pages/admin-management-page'),
-);
-const SuperAdminEmployeeManagementPage = lazy(() =>
-  import('@/features/super-admin/pages/employee-management-page'),
 );
 const SuperAdminSettingsPage = lazy(() =>
   import('@/features/super-admin/pages/super-admin-dashboard-page').then((m) => ({
@@ -146,7 +136,6 @@ const router = createBrowserRouter([
     children: [
       { path: '/admin/dashboard', element: withSuspense(<AdminDashboardPage />) },
       { path: '/admin/clients', element: withSuspense(<AdminClientsPage />) },
-      { path: '/admin/operations', element: withSuspense(<AdminOperationalPage />) },
       { path: '/admin/projects', element: withSuspense(<AdminProjectsPage />) },
       { path: '/admin/employees', element: withSuspense(<AdminEmployeesPage />) },
       { path: '/admin/settings', element: withSuspense(<AdminSettingsPage />) },
@@ -157,9 +146,6 @@ const router = createBrowserRouter([
     children: [
       { path: '/super-admin/dashboard', element: withSuspense(<SuperAdminDashboardPage />) },
       { path: '/super-admin/tenants', element: withSuspense(<SuperAdminTenantsPage />) },
-      { path: '/super-admin/companies', element: withSuspense(<SuperAdminCompanyManagementPage />) },
-      { path: '/super-admin/admins', element: withSuspense(<SuperAdminAdminManagementPage />) },
-      { path: '/super-admin/employees', element: withSuspense(<SuperAdminEmployeeManagementPage />) },
       { path: '/super-admin/settings', element: withSuspense(<SuperAdminSettingsPage />) },
     ],
   },
