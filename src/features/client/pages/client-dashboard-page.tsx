@@ -1,6 +1,8 @@
-import { BarChart3, FolderKanban, LifeBuoy, Settings, Users } from 'lucide-react';
+import { BarChart3, FolderKanban, LifeBuoy, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PortalLayout } from '@/layouts/portal-layout';
+import { ProjectsList } from '@/features/client/components/projects-list';
+import { SupportTicketsTable } from '@/features/client/components/support-tickets-table';
 
 const clientNav = [
   { label: 'Dashboard', href: '/client/dashboard' },
@@ -12,7 +14,7 @@ const clientNav = [
 const metrics = [
   { label: 'Active Projects', value: '3', icon: FolderKanban, change: '+1 this month' },
   { label: 'Open Tickets', value: '2', icon: LifeBuoy, change: '1 resolved today' },
-  { label: 'Team Members', value: '8', icon: Users, change: 'Across 2 projects' },
+  { label: 'Total Spent', value: '₹2.45L', icon: TrendingUp, change: 'Payment status: Current' },
   { label: 'Completion Rate', value: '94%', icon: BarChart3, change: '↗ 6% vs last month' },
 ];
 
@@ -25,7 +27,7 @@ export default function ClientDashboardPage() {
           <p className="text-muted-foreground">Overview of your projects and activity</p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((m) => (
             <Card key={m.label}>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -75,7 +77,13 @@ export default function ClientDashboardPage() {
 export function ClientProjectsPage() {
   return (
     <PortalLayout navItems={clientNav} portalName="Client Portal">
-      <PlaceholderPage title="Projects" description="Your active and completed projects" />
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Projects</h1>
+          <p className="text-muted-foreground">Your active and completed projects</p>
+        </div>
+        <ProjectsList />
+      </div>
     </PortalLayout>
   );
 }
@@ -83,7 +91,13 @@ export function ClientProjectsPage() {
 export function ClientSupportPage() {
   return (
     <PortalLayout navItems={clientNav} portalName="Client Portal">
-      <PlaceholderPage title="Support" description="Submit and track support requests" />
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Support</h1>
+          <p className="text-muted-foreground">Submit and track support requests</p>
+        </div>
+        <SupportTicketsTable />
+      </div>
     </PortalLayout>
   );
 }
@@ -91,18 +105,17 @@ export function ClientSupportPage() {
 export function ClientProfilePage() {
   return (
     <PortalLayout navItems={clientNav} portalName="Client Portal">
-      <PlaceholderPage title="Profile" description="Manage your account settings" />
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Profile</h1>
+          <p className="text-muted-foreground">Manage your account and preferences</p>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Profile settings coming soon</p>
+          </CardContent>
+        </Card>
+      </div>
     </PortalLayout>
-  );
-}
-
-function PlaceholderPage({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="flex min-h-[400px] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/20 p-12 text-center">
-      <Settings className="mb-4 size-12 text-muted-foreground/50" />
-      <h1 className="text-xl font-bold">{title}</h1>
-      <p className="mt-2 max-w-md text-muted-foreground">{description}</p>
-      <p className="mt-4 text-sm text-purple-400">Ready for Spring Boot API integration</p>
-    </div>
   );
 }
