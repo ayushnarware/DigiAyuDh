@@ -93,7 +93,7 @@ export function PortfolioSection() {
                 >
                   {project.id === 'viora' && (
                     <>
-                      <p className="text-xs text-white/80">Good morning, Maya</p>
+                      <p className="text-xs text-white/80">Good morning, Ayush</p>
                       <h4 className="mt-1 text-xl font-bold text-white">
                         Your wellness,
                         <br />
