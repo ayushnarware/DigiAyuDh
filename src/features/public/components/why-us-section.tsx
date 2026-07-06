@@ -68,7 +68,7 @@ export function WhyUsSection() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Average launch time</p>
-                  <p className="text-2xl font-bold">4–8 weeks</p>
+                  <p className="text-2xl font-bold">2–4 weeks</p>
                 </div>
                 <div className="flex size-12 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400">
                   <ArrowUpRight className="size-5" />
