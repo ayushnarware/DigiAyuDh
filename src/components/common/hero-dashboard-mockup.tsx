@@ -24,6 +24,16 @@ const activities = [
 ];
 
 export function HeroDashboardMockup({ className }: { className?: string }) {
+  const currentHour = new Date().getHours();
+  const greeting =
+    currentHour < 12
+      ? 'Good morning,'
+      : currentHour < 16
+      ? 'Good afternoon,'
+      : currentHour < 20
+      ? 'Good evening,'
+      : 'Good night,';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -50,7 +60,7 @@ export function HeroDashboardMockup({ className }: { className?: string }) {
           <div className="mb-4 flex items-center justify-between">
             <div>
               <p className="text-xs text-slate-400">OVERVIEW</p>
-              <p className="text-sm font-semibold text-white">Good morning, Aarav 👋</p>
+              <p className="text-sm font-semibold text-white">{greeting} Ayudh User 👋</p>
             </div>
             <button className="rounded-lg bg-purple-600 px-3 py-1.5 text-xs font-medium text-white">
               + New project
