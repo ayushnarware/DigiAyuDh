@@ -31,7 +31,7 @@ export function PublicNavbar() {
         <Link to="/" className="flex items-center gap-2">
           <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 text-sm font-bold text-white">
             <img
-              src="/DigiAyudh-logo.jpeg"
+              src="/DigiAyudhlogo.jpeg"
               alt="DigiAyudh Logo"
               className="h-8 w-8 rounded-lg object-cover"
             />
