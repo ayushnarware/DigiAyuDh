@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, Users, FileText, MessageSquare, Phone, Mail, Calendar } from 'lucide-react';
+import { TrendingUp, Users, FileText, Phone, Mail, Calendar } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 

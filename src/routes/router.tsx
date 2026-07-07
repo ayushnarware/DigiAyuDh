@@ -218,6 +218,49 @@ const SuperAdminSettingsPage = lazy(() =>
   })),
 );
 
+const CRMDashboardPage = lazy(() =>
+  import('@/features/crm/pages/crm-dashboard-page'),
+);
+const CRMLeadsPage = lazy(() =>
+  import('@/features/crm/pages/crm-dashboard-page').then((m) => ({
+    default: m.CRMLeadsPage,
+  })),
+);
+const CRMQuotationsPage = lazy(() =>
+  import('@/features/crm/pages/crm-dashboard-page').then((m) => ({
+    default: m.CRMQuotationsPage,
+  })),
+);
+const CRMMeetingsPage = lazy(() =>
+  import('@/features/crm/pages/crm-dashboard-page').then((m) => ({
+    default: m.CRMMeetingsPage,
+  })),
+);
+const CRMCommunicationPage = lazy(() =>
+  import('@/features/crm/pages/crm-dashboard-page').then((m) => ({
+    default: m.CRMCommunicationPage,
+  })),
+);
+
+const FinanceDashboardPage = lazy(() =>
+  import('@/features/finance/pages/finance-dashboard-page'),
+);
+const FinanceInvoicesPage = lazy(() =>
+  import('@/features/finance/pages/finance-dashboard-page').then((m) => ({
+    default: m.FinanceInvoicesPage,
+  })),
+);
+const FinancePaymentsPage = lazy(() =>
+  import('@/features/finance/pages/finance-dashboard-page').then((m) => ({
+    default: m.FinancePaymentsPage,
+  })),
+);
+const FinanceReportsPage = lazy(() =>
+  import('@/features/finance/pages/finance-dashboard-page').then((m) => ({
+    default: m.FinanceReportsPage,
+  })),
+);
+
 function PageLoader() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
@@ -309,6 +352,20 @@ const router = createBrowserRouter([
       { path: '/super-admin/audit-logs', element: withSuspense(<SuperAdminAuditLogsPage />) },
       { path: '/super-admin/backup', element: withSuspense(<SuperAdminBackupPage />) },
       { path: '/super-admin/settings', element: withSuspense(<SuperAdminSettingsPage />) },
+    ],
+  },
+  {
+    element: <ProtectedRoute allowedRoles={['ADMIN']} />,
+    children: [
+      { path: '/crm/dashboard', element: withSuspense(<CRMDashboardPage />) },
+      { path: '/crm/leads', element: withSuspense(<CRMLeadsPage />) },
+      { path: '/crm/quotations', element: withSuspense(<CRMQuotationsPage />) },
+      { path: '/crm/meetings', element: withSuspense(<CRMMeetingsPage />) },
+      { path: '/crm/communication', element: withSuspense(<CRMCommunicationPage />) },
+      { path: '/finance/dashboard', element: withSuspense(<FinanceDashboardPage />) },
+      { path: '/finance/invoices', element: withSuspense(<FinanceInvoicesPage />) },
+      { path: '/finance/payments', element: withSuspense(<FinancePaymentsPage />) },
+      { path: '/finance/reports', element: withSuspense(<FinanceReportsPage />) },
     ],
   },
   { path: '/unauthorized', element: withSuspense(<UnauthorizedPage />) },
