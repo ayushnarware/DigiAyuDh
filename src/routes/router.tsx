@@ -261,12 +261,6 @@ const FinanceReportsPage = lazy(() =>
   })),
 );
 
-const MessagingPage = lazy(() =>
-  import('@/features/messaging/pages/messaging-page').then((m) => ({
-    default: m.MessagingPage,
-  })),
-);
-
 function PageLoader() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
@@ -310,7 +304,6 @@ const router = createBrowserRouter([
       { path: '/client/documents', element: withSuspense(<ClientDocumentsPage />) },
       { path: '/client/support', element: withSuspense(<ClientSupportPage />) },
       { path: '/client/profile', element: withSuspense(<ClientProfilePage />) },
-      { path: '/messaging', element: withSuspense(<MessagingPage />) },
     ],
   },
   {
@@ -325,7 +318,6 @@ const router = createBrowserRouter([
       { path: '/employee/documents', element: withSuspense(<EmployeeDocumentsPage />) },
       { path: '/employee/performance', element: withSuspense(<EmployeePerformancePage />) },
       { path: '/employee/profile', element: withSuspense(<EmployeeProfilePage />) },
-      { path: '/messaging', element: withSuspense(<MessagingPage />) },
     ],
   },
   {
@@ -342,7 +334,6 @@ const router = createBrowserRouter([
       { path: '/admin/documents', element: withSuspense(<AdminDocumentsPage />) },
       { path: '/admin/reports', element: withSuspense(<AdminReportsPage />) },
       { path: '/admin/settings', element: withSuspense(<AdminSettingsPage />) },
-      { path: '/messaging', element: withSuspense(<MessagingPage />) },
     ],
   },
   {
@@ -361,7 +352,6 @@ const router = createBrowserRouter([
       { path: '/super-admin/audit-logs', element: withSuspense(<SuperAdminAuditLogsPage />) },
       { path: '/super-admin/backup', element: withSuspense(<SuperAdminBackupPage />) },
       { path: '/super-admin/settings', element: withSuspense(<SuperAdminSettingsPage />) },
-      { path: '/messaging', element: withSuspense(<MessagingPage />) },
     ],
   },
   {
