@@ -1,6 +1,7 @@
-import { FolderKanban, Users, TrendingUp } from 'lucide-react';
+import { FolderKanban, Users, TrendingUp, Plus } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { ClientsTable } from '@/features/admin/components/clients-table';
 import { ProjectsTable } from '@/features/admin/components/projects-table';
 import { EmployeesTable } from '@/features/admin/components/employees-table';
@@ -107,9 +108,7 @@ export function AdminTeamsPage() {
             <h1 className="text-2xl font-bold">Teams</h1>
             <p className="text-muted-foreground">Manage project and functional teams</p>
           </div>
-          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-            + Add Team
-          </button>
+          <Button icon={<Plus className="size-4" />}>Add Team</Button>
         </div>
         <Card>
           <CardContent className="pt-6">
@@ -130,9 +129,7 @@ export function AdminDepartmentsPage() {
             <h1 className="text-2xl font-bold">Departments</h1>
             <p className="text-muted-foreground">Manage organizational departments</p>
           </div>
-          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-            + Add Department
-          </button>
+          <Button icon={<Plus className="size-4" />}>Add Department</Button>
         </div>
         <Card>
           <CardContent className="pt-6">
@@ -153,9 +150,7 @@ export function AdminDesignationsPage() {
             <h1 className="text-2xl font-bold">Designations</h1>
             <p className="text-muted-foreground">Manage job designations and titles</p>
           </div>
-          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-            + Add Designation
-          </button>
+          <Button icon={<Plus className="size-4" />}>Add Designation</Button>
         </div>
         <Card>
           <CardContent className="pt-6">
@@ -176,9 +171,7 @@ export function AdminMeetingsPage() {
             <h1 className="text-2xl font-bold">Meetings</h1>
             <p className="text-muted-foreground">Schedule and manage team meetings</p>
           </div>
-          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-            + Schedule Meeting
-          </button>
+          <Button icon={<Plus className="size-4" />}>Schedule Meeting</Button>
         </div>
         <Card>
           <CardContent className="pt-6">
@@ -199,9 +192,7 @@ export function AdminDocumentsPage() {
             <h1 className="text-2xl font-bold">Documents</h1>
             <p className="text-muted-foreground">Manage contracts, agreements, and files</p>
           </div>
-          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-            + Upload Document
-          </button>
+          <Button icon={<Plus className="size-4" />}>Upload Document</Button>
         </div>
         <Card>
           <CardContent className="pt-6">
@@ -322,12 +313,8 @@ export function AdminSettingsPage() {
           </Card>
 
           <div className="flex justify-end gap-2">
-            <button className="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted">
-              Reset to Defaults
-            </button>
-            <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-              Save Settings
-            </button>
+            <Button variant="outline">Reset to Defaults</Button>
+            <Button variant="primary">Save Settings</Button>
           </div>
         </div>
       </div>

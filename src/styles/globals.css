@@ -92,6 +92,48 @@
     scroll-behavior: smooth;
   }
 
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(168 85 247 / 0.5);
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(168 85 247 / 0.7);
+  }
+
+  .dark {
+    --webkit-scrollbar-thumb: rgb(139 92 246 / 0.5);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(139 92 246 / 0.5);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgb(139 92 246 / 0.7);
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(168 85 247 / 0.5) transparent;
+  }
+
+  .dark * {
+    scrollbar-color: rgb(139 92 246 / 0.5) transparent;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }

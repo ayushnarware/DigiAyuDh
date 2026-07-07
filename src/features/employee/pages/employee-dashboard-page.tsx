@@ -1,7 +1,9 @@
 import React from 'react';
-import { CheckCircle2, AlertCircle, Clock, TrendingUp } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Clock, TrendingUp, X, Save } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { TasksTable } from '@/features/employee/components/tasks-table';
 
 const employeeNav = [
@@ -154,44 +156,24 @@ export function EmployeeProfilePage() {
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <label className="block text-sm font-medium mb-2">First Name</label>
-                        <input
-                          type="text"
-                          defaultValue={mockProfile.firstName}
-                          className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                        />
+                        <Input type="text" defaultValue={mockProfile.firstName} />
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2">Last Name</label>
-                        <input
-                          type="text"
-                          defaultValue={mockProfile.lastName}
-                          className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                        />
+                        <Input type="text" defaultValue={mockProfile.lastName} />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Email</label>
-                      <input
-                        type="email"
-                        defaultValue={mockProfile.email}
-                        className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                      />
+                      <Input type="email" defaultValue={mockProfile.email} />
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Phone</label>
-                      <input
-                        type="tel"
-                        defaultValue={mockProfile.phone}
-                        className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                      />
+                      <Input type="tel" defaultValue={mockProfile.phone} />
                     </div>
                     <div className="flex justify-end gap-2 pt-4 border-t">
-                      <button className="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted">
-                        Cancel
-                      </button>
-                      <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-                        Save Changes
-                      </button>
+                      <Button variant="outline" icon={<X className="size-4" />}>Cancel</Button>
+                      <Button icon={<Save className="size-4" />}>Save Changes</Button>
                     </div>
                   </div>
                 </CardContent>
@@ -257,35 +239,19 @@ export function EmployeeProfilePage() {
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium mb-2">Current Password</label>
-                      <input
-                        type="password"
-                        placeholder="••••••••"
-                        className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                      />
+                      <Input type="password" placeholder="••••••••" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">New Password</label>
-                      <input
-                        type="password"
-                        placeholder="••••••••"
-                        className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                      />
+                      <Input type="password" placeholder="••••••••" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Confirm Password</label>
-                      <input
-                        type="password"
-                        placeholder="••••••••"
-                        className="w-full px-4 py-2 rounded-lg border border-input bg-background"
-                      />
+                      <Input type="password" placeholder="••••••••" />
                     </div>
                     <div className="flex justify-end gap-2 pt-4 border-t">
-                      <button className="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted">
-                        Cancel
-                      </button>
-                      <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
-                        Update Password
-                      </button>
+                      <Button variant="outline" icon={<X className="size-4" />}>Cancel</Button>
+                      <Button icon={<Save className="size-4" />}>Update Password</Button>
                     </div>
                   </div>
                 </CardContent>
