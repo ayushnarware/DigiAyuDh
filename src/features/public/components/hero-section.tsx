@@ -59,8 +59,8 @@ export function HeroSection() {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="#work">
-                  <Play className="size-4 text-sm text-purple-400 hover:text-purple-300" />
+                <a href="#work" className='text-purple-400 hover:text-purple-300'>
+                  <Play className="size-4 text-sm " />
                   See our work
                 </a>
               </Button>
