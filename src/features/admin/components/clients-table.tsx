@@ -1,4 +1,4 @@
-import { MoreHorizontal, Plus, Search } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, Download, Upload } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,6 +11,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Modal } from '@/components/ui/modal';
+import { ClientAddForm } from './client-add-form';
 
 interface Client {
   id: string;
@@ -81,6 +83,7 @@ export function ClientsTable() {
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive' | 'paused'>(
     'all',
   );
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const filteredClients = useMemo(() => {
     return mockClients.filter((client) => {
@@ -116,10 +119,24 @@ export function ClientsTable() {
             <CardTitle>Clients</CardTitle>
             <CardDescription>Manage and track all client accounts and projects</CardDescription>
           </div>
-          <Button variant="brand" size="sm" className="gap-2">
-            <Plus className="size-4" />
-            Add Client
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => setIsAddModalOpen(true)}
+              className="gap-2 bg-purple-600 hover:bg-purple-700"
+              size="sm"
+            >
+              <Plus className="size-4" />
+              Add Client
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Upload className="size-4" />
+              Import
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Download className="size-4" />
+              Export
+            </Button>
+          </div>
         </div>
       </CardHeader>
 
@@ -191,9 +208,22 @@ export function ClientsTable() {
                   <td className="px-4 py-3 font-medium">{client.totalSpent}</td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">{client.joinDate}</td>
                   <td className="px-4 py-3 text-center">
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="size-4" />
-                    </Button>
+                    <div className="flex items-center justify-center gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                      >
+                        <Edit2 className="size-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="size-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -222,6 +252,16 @@ export function ClientsTable() {
           </div>
         </div>
       </CardContent>
+
+      {/* Add Client Modal */}
+      <Modal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        title="Add New Client"
+        size="xl"
+      >
+        <ClientAddForm onClose={() => setIsAddModalOpen(false)} />
+      </Modal>
     </Card>
   );
 }

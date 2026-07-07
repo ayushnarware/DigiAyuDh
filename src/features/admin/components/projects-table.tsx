@@ -1,4 +1,4 @@
-import { MoreHorizontal, Plus, Search } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, Download, Upload } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,6 +11,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Modal } from '@/components/ui/modal';
+import { ProjectAddForm } from './project-add-form';
 
 interface Project {
   id: string;
@@ -90,6 +92,7 @@ export function ProjectsTable() {
   const [statusFilter, setStatusFilter] = useState<'all' | 'planning' | 'in-progress' | 'completed' | 'on-hold'>(
     'all',
   );
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const filteredProjects = useMemo(() => {
     return mockProjects.filter((project) => {
@@ -127,10 +130,24 @@ export function ProjectsTable() {
             <CardTitle>Projects</CardTitle>
             <CardDescription>Track all active and completed projects</CardDescription>
           </div>
-          <Button variant="brand" size="sm" className="gap-2">
-            <Plus className="size-4" />
-            New Project
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => setIsAddModalOpen(true)}
+              className="gap-2 bg-purple-600 hover:bg-purple-700"
+              size="sm"
+            >
+              <Plus className="size-4" />
+              New Project
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Upload className="size-4" />
+              Import
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Download className="size-4" />
+              Export
+            </Button>
+          </div>
         </div>
       </CardHeader>
 
@@ -225,9 +242,22 @@ export function ProjectsTable() {
                     </span>
                   </td>
                   <td className="px-4 py-3 text-center">
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="size-4" />
-                    </Button>
+                    <div className="flex items-center justify-center gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                      >
+                        <Edit2 className="size-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="size-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -256,6 +286,16 @@ export function ProjectsTable() {
           </div>
         </div>
       </CardContent>
+
+      {/* Add Project Modal */}
+      <Modal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        title="Create New Project"
+        size="xl"
+      >
+        <ProjectAddForm onClose={() => setIsAddModalOpen(false)} />
+      </Modal>
     </Card>
   );
 }

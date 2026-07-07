@@ -76,9 +76,13 @@ export default function LoginPage() {
       <div className="relative w-full max-w-md">
         <div className="mb-8 text-center">
           <Link to="/" className="inline-flex items-center gap-2">
-            <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-purple-600 text-sm font-bold text-white">
-              DA
-            </div>
+            <div className="flex size-8 items-center justify-center rounded-lg">
+            <img
+              src="/DigiAyudhlogo.jpeg"
+              alt="DigiAyudh Logo"
+              className="h-8 w-8 rounded-lg object-cover"
+            />
+          </div>
             <span className="text-xl font-bold">{APP_CONFIG.name}</span>
           </Link>
           <p className="mt-2 text-sm text-muted-foreground">{APP_CONFIG.tagline}</p>

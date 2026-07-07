@@ -5,7 +5,16 @@ import { TenantsTable } from '@/features/super-admin/components/tenants-table';
 
 const superAdminNav = [
   { label: 'Dashboard', href: '/super-admin/dashboard' },
-  { label: 'Tenants', href: '/super-admin/tenants' },
+  { label: 'Companies', href: '/super-admin/companies' },
+  { label: 'Admins', href: '/super-admin/admins' },
+  { label: 'Departments', href: '/super-admin/departments' },
+  { label: 'Designations', href: '/super-admin/designations' },
+  { label: 'Roles', href: '/super-admin/roles' },
+  { label: 'Permissions', href: '/super-admin/permissions' },
+  { label: 'Finance', href: '/super-admin/finance' },
+  { label: 'Reports', href: '/super-admin/reports' },
+  { label: 'Audit Logs', href: '/super-admin/audit-logs' },
+  { label: 'Backup', href: '/super-admin/backup' },
   { label: 'Settings', href: '/super-admin/settings' },
 ];
 
@@ -252,6 +261,247 @@ export function SuperAdminSettingsPage() {
             </button>
           </div>
         </div>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Companies Management
+export function SuperAdminCompaniesPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Companies</h1>
+            <p className="text-muted-foreground">Manage all registered companies</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Company
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Companies table with CRUD operations</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Admin Management
+export function SuperAdminAdminsPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Admins</h1>
+            <p className="text-muted-foreground">Manage admin accounts and permissions</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Admin
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Admins table with role assignments</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Departments Management
+export function SuperAdminDepartmentsPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Departments</h1>
+            <p className="text-muted-foreground">Manage organizational departments</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Department
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Departments table with hierarchy</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Designations Management
+export function SuperAdminDesignationsPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Designations</h1>
+            <p className="text-muted-foreground">Manage job designations and titles</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Designation
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Designations table with levels</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Roles Management
+export function SuperAdminRolesPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Roles</h1>
+            <p className="text-muted-foreground">Manage system roles and responsibilities</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Role
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Roles table with permissions</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Permissions Management
+export function SuperAdminPermissionsPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Permissions</h1>
+            <p className="text-muted-foreground">Manage granular permissions</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Permission
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Permissions table with actions</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Finance Management
+export function SuperAdminFinancePage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Finance</h1>
+          <p className="text-muted-foreground">Financial overview and management</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹45.2L</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹12.5L</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Net Profit</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹32.7L</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Reports
+export function SuperAdminReportsPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Reports</h1>
+          <p className="text-muted-foreground">System reports and analytics</p>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Reports dashboard with multiple views</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Audit Logs
+export function SuperAdminAuditLogsPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Audit Logs</h1>
+          <p className="text-muted-foreground">System audit trail and activity logs</p>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Audit logs table with filtering</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+// Backup & Restore
+export function SuperAdminBackupPage() {
+  return (
+    <PortalLayout navItems={superAdminNav} portalName="Super Admin">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Backup & Restore</h1>
+          <p className="text-muted-foreground">Manage system backups and recovery</p>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Backup management interface</p>
+          </CardContent>
+        </Card>
       </div>
     </PortalLayout>
   );

@@ -8,6 +8,11 @@ import { SupportTicketsTable } from '@/features/client/components/support-ticket
 const clientNav = [
   { label: 'Dashboard', href: '/client/dashboard' },
   { label: 'Projects', href: '/client/projects' },
+  { label: 'Invoices', href: '/client/invoices' },
+  { label: 'Contracts', href: '/client/contracts' },
+  { label: 'Payments', href: '/client/payments' },
+  { label: 'Team', href: '/client/team' },
+  { label: 'Documents', href: '/client/documents' },
   { label: 'Support', href: '/client/support' },
   { label: 'Profile', href: '/client/profile' },
 ];
@@ -395,6 +400,155 @@ export function ClientProfilePage() {
             )}
           </div>
         </div>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function ClientInvoicesPage() {
+  return (
+    <PortalLayout navItems={clientNav} portalName="Client Portal">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Invoices</h1>
+          <p className="text-muted-foreground">View and download your invoices</p>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Invoices</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-center text-muted-foreground">Invoices list with download and payment status</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function ClientContractsPage() {
+  return (
+    <PortalLayout navItems={clientNav} portalName="Client Portal">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Contracts</h1>
+          <p className="text-muted-foreground">Review and manage your contracts</p>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Contracts</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-center text-muted-foreground">Contracts list with status and download</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function ClientPaymentsPage() {
+  return (
+    <PortalLayout navItems={clientNav} portalName="Client Portal">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Payments</h1>
+          <p className="text-muted-foreground">Manage your payments and billing</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm">Outstanding Balance</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹0</p>
+              <p className="text-xs text-muted-foreground">All paid up</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm">Total Paid</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹2.45L</p>
+              <p className="text-xs text-muted-foreground">YTD</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm">Last Payment</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">Mar 1</p>
+              <p className="text-xs text-muted-foreground">Successfully paid</p>
+            </CardContent>
+          </Card>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Payment History</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-center text-muted-foreground">Payment history table</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function ClientTeamPage() {
+  return (
+    <PortalLayout navItems={clientNav} portalName="Client Portal">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Account Team</h1>
+          <p className="text-muted-foreground">Your dedicated account team</p>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Team Members</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[
+                { name: 'John Smith', role: 'Account Manager', email: 'john@digiayudh.com' },
+                { name: 'Sarah Johnson', role: 'Project Manager', email: 'sarah@digiayudh.com' },
+                { name: 'Mike Williams', role: 'Technical Lead', email: 'mike@digiayudh.com' },
+              ].map((member) => (
+                <div key={member.name} className="flex items-center justify-between p-4 rounded-lg border border-border">
+                  <div>
+                    <p className="text-sm font-medium">{member.name}</p>
+                    <p className="text-xs text-muted-foreground">{member.role}</p>
+                    <p className="text-xs text-muted-foreground">{member.email}</p>
+                  </div>
+                  <button className="text-xs text-purple-600 hover:text-purple-700 font-medium">Message</button>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function ClientDocumentsPage() {
+  return (
+    <PortalLayout navItems={clientNav} portalName="Client Portal">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Documents</h1>
+          <p className="text-muted-foreground">Access your project and contract documents</p>
+        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Documents</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-center text-muted-foreground">Documents list with download and preview</p>
+          </CardContent>
+        </Card>
       </div>
     </PortalLayout>
   );

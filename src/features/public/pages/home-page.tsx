@@ -6,7 +6,7 @@ import { ServicesSection } from '@/features/public/components/services-section';
 import { WhyUsSection } from '@/features/public/components/why-us-section';
 import { ProcessSection } from '@/features/public/components/process-section';
 import { PortfolioSection } from '@/features/public/components/portfolio-section';
-import { PricingSection } from '@/features/public/components/pricing-section';
+// import { PricingSection } from '@/features/public/components/pricing-section';
 import { TestimonialSection } from '@/features/public/components/testimonial-section';
 import { FAQSection } from '@/features/public/components/faq-section';
 import { ContactSection } from '@/features/public/components/contact-section';
@@ -22,7 +22,7 @@ export default function HomePage() {
         <WhyUsSection />
         <ProcessSection />
         <PortfolioSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
         <TestimonialSection />
         <FAQSection />
         <ContactSection />

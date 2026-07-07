@@ -1,4 +1,4 @@
-import { MoreHorizontal, Plus, Search } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, Download, Upload } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,6 +11,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Modal } from '@/components/ui/modal';
+import { EmployeeAddForm } from './employee-add-form';
 
 interface Employee {
   id: string;
@@ -94,6 +96,7 @@ export function EmployeesTable() {
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive' | 'on-leave'>(
     'all',
   );
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const filteredEmployees = useMemo(() => {
     return mockEmployees.filter((emp) => {
@@ -147,10 +150,24 @@ export function EmployeesTable() {
             <CardTitle>Employees</CardTitle>
             <CardDescription>Manage team members and their assignments</CardDescription>
           </div>
-          <Button variant="brand" size="sm" className="gap-2">
-            <Plus className="size-4" />
-            Add Employee
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => setIsAddModalOpen(true)}
+              className="gap-2 bg-purple-600 hover:bg-purple-700"
+              size="sm"
+            >
+              <Plus className="size-4" />
+              Add Employee
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Upload className="size-4" />
+              Import
+            </Button>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Download className="size-4" />
+              Export
+            </Button>
+          </div>
         </div>
       </CardHeader>
 
@@ -241,9 +258,22 @@ export function EmployeesTable() {
                   </td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">{emp.joinDate}</td>
                   <td className="px-4 py-3 text-center">
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="size-4" />
-                    </Button>
+                    <div className="flex items-center justify-center gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                      >
+                        <Edit2 className="size-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="size-4" />
+                      </Button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -272,6 +302,16 @@ export function EmployeesTable() {
           </div>
         </div>
       </CardContent>
+
+      {/* Add Employee Modal */}
+      <Modal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        title="Add New Employee"
+        size="xl"
+      >
+        <EmployeeAddForm onClose={() => setIsAddModalOpen(false)} />
+      </Modal>
     </Card>
   );
 }
