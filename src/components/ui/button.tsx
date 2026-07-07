@@ -8,18 +8,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90 active:scale-95',
-        destructive: 'bg-destructive text-white shadow-sm hover:bg-destructive/90 active:scale-95',
+        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+        destructive: 'bg-destructive text-white shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-border bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground active:scale-95',
-        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 active:scale-95',
-        ghost: 'hover:bg-accent hover:text-accent-foreground active:scale-95',
+          'border border-border bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground',
+        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         brand:
-          'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-purple-500/25 hover:from-violet-500 hover:to-purple-500 active:scale-95',
-        success: 'bg-green-600 text-white shadow hover:bg-green-700 active:scale-95',
-        warning: 'bg-amber-600 text-white shadow hover:bg-amber-700 active:scale-95',
-        danger: 'bg-red-600 text-white shadow hover:bg-red-700 active:scale-95',
+          'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-purple-500/25 hover:from-violet-500 hover:to-purple-500',
       },
       size: {
         default: 'h-10 px-5 py-2',

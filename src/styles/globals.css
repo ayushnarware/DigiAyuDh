@@ -92,30 +92,6 @@
     scroll-behavior: smooth;
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-muted/30;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted rounded-full border border-border;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted/80;
-  }
-
-  /* Firefox Scrollbar */
-  * {
-    scrollbar-color: hsl(var(--muted)) hsl(var(--muted) / 0.3);
-    scrollbar-width: thin;
-  }
-
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
