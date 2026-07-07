@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { ArrowUpRight, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -53,10 +52,10 @@ export function HeroSection() {
               className="mt-8 flex flex-wrap items-center gap-4"
             >
               <Button variant="brand" size="lg" asChild>
-                <Link to="/login">
+                <a href="#contact">
                   Build my product
                   <ArrowUpRight className="size-4" />
-                </Link>
+                </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
                 <a href="#work">

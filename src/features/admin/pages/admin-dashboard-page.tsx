@@ -1,10 +1,18 @@
-import { FolderKanban, Users, TrendingUp, Plus } from 'lucide-react';
+import { FolderKanban, Users, TrendingUp, DollarSign, CheckCircle2, Clock, FileText, Briefcase } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { PremiumDashboardHeader } from '@/components/shared/premium-dashboard-header';
+import { ModernKPICard } from '@/components/shared/modern-kpi-card';
+import { ResponsiveDashboardGrid, ResponsiveChartsGrid, DashboardSection, DashboardContainer } from '@/components/shared/responsive-dashboard-grid';
 import { ClientsTable } from '@/features/admin/components/clients-table';
 import { ProjectsTable } from '@/features/admin/components/projects-table';
 import { EmployeesTable } from '@/features/admin/components/employees-table';
+import { TeamsTable } from '@/features/admin/components/teams-table';
+import { DepartmentsTable } from '@/features/admin/components/departments-table';
+import { DesignationsTable } from '@/features/admin/components/designations-table';
+import { MeetingsTable } from '@/features/admin/components/meetings-table';
+import { DocumentsTable } from '@/features/admin/components/documents-table';
 
 const adminNav = [
   { label: 'Dashboard', href: '/admin/dashboard' },
@@ -20,39 +28,168 @@ const adminNav = [
   { label: 'Settings', href: '/admin/settings' },
 ];
 
-const metrics = [
-  { label: 'Total Clients', value: '48', icon: Users, change: '+5 this month' },
-  { label: 'Active Projects', value: '24', icon: FolderKanban, change: '12 in progress' },
-  { label: 'Team Members', value: '16', icon: Users, change: '+2 new hires' },
-  { label: 'Revenue (MTD)', value: '₹12.4L', icon: TrendingUp, change: '↗ 18% vs last month' },
-];
-
 export default function AdminDashboardPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
-      <div className="space-y-8">
-        <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground">Overview of business metrics and operations</p>
-        </div>
+      <PremiumDashboardHeader
+        title="Company Operations Center"
+        subtitle="Real-time business overview and management"
+        companyName="Company Name"
+        showClock={true}
+      />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m) => (
-            <Card key={m.label}>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  {m.label}
-                </CardTitle>
-                <m.icon className="size-4 text-purple-400" />
+      <DashboardContainer>
+        {/* Key Metrics */}
+        <DashboardSection title="Company Overview" subtitle="Key business metrics and performance indicators">
+          <ResponsiveDashboardGrid>
+            <ModernKPICard
+              title="Total Clients"
+              value="48"
+              change={11.4}
+              changeLabel="5 new clients"
+              icon={Users}
+              color="blue"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Active Projects"
+              value="24"
+              change={20}
+              changeLabel="12 in progress"
+              icon={FolderKanban}
+              color="purple"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Team Members"
+              value="127"
+              change={1.6}
+              changeLabel="2 new hires"
+              icon={Users}
+              color="green"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Revenue (MTD)"
+              value="₹12.4L"
+              change={18}
+              changeLabel="Growing steady"
+              icon={DollarSign}
+              color="cyan"
+              trend="up"
+              miniChart={true}
+            />
+          </ResponsiveDashboardGrid>
+        </DashboardSection>
+
+        {/* Performance Charts */}
+        <DashboardSection title="Performance Metrics" subtitle="Business trends and analytics">
+          <ResponsiveChartsGrid>
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base">Project Timeline</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-bold">{m.value}</p>
-                <p className="text-xs text-muted-foreground">{m.change}</p>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <Clock className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for integration</p>
+                </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
-      </div>
+
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base">Client Growth</CardTitle>
+              </CardHeader>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <TrendingUp className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for integration</p>
+                </div>
+              </CardContent>
+            </Card>
+          </ResponsiveChartsGrid>
+        </DashboardSection>
+
+        {/* Quick Actions */}
+        <DashboardSection title="Quick Actions" subtitle="Frequently used operations">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Add Client', icon: Users, color: 'bg-blue-50 hover:bg-blue-100 border-blue-200' },
+              { label: 'New Project', icon: FolderKanban, color: 'bg-purple-50 hover:bg-purple-100 border-purple-200' },
+              { label: 'Team Member', icon: Users, color: 'bg-green-50 hover:bg-green-100 border-green-200' },
+              { label: 'Schedule Meeting', icon: Clock, color: 'bg-cyan-50 hover:bg-cyan-100 border-cyan-200' },
+            ].map((action) => {
+              const Icon = action.icon;
+              return (
+                <Button
+                  key={action.label}
+                  variant="outline"
+                  className={`h-24 flex flex-col items-center justify-center gap-2 ${action.color} transition-all`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="text-xs font-medium text-center">{action.label}</span>
+                </Button>
+              );
+            })}
+          </div>
+        </DashboardSection>
+
+        {/* Task Status Overview */}
+        <DashboardSection title="Task Status" subtitle="Current project and task metrics">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { label: 'Completed', value: '142', color: 'bg-green-50 border-green-200', icon: CheckCircle2, iconColor: 'text-green-600' },
+              { label: 'In Progress', value: '28', color: 'bg-blue-50 border-blue-200', icon: Clock, iconColor: 'text-blue-600' },
+              { label: 'Pending', value: '16', color: 'bg-orange-50 border-orange-200', icon: FileText, iconColor: 'text-orange-600' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <Card key={item.label} className={`border ${item.color}`}>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
+                        <p className="text-2xl font-bold mt-1">{item.value}</p>
+                      </div>
+                      <Icon className={`w-8 h-8 ${item.iconColor}`} />
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </DashboardSection>
+
+        {/* Management Summary */}
+        <DashboardSection title="Management Modules" subtitle="Quick access to core operations">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Employees', icon: Users, href: '/admin/employees' },
+              { label: 'Projects', icon: FolderKanban, href: '/admin/projects' },
+              { label: 'Clients', icon: Briefcase, href: '/admin/clients' },
+              { label: 'Teams', icon: Users, href: '/admin/teams' },
+            ].map((module) => {
+              const Icon = module.icon;
+              return (
+                <Card key={module.label} className="border hover:shadow-md transition-all cursor-pointer">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-lg bg-muted">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <p className="font-medium">{module.label}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </DashboardSection>
+      </DashboardContainer>
     </PortalLayout>
   );
 }
@@ -103,18 +240,11 @@ export function AdminTeamsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Teams</h1>
-            <p className="text-muted-foreground">Manage project and functional teams</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Add Team</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Teams</h1>
+          <p className="text-muted-foreground">Manage project and functional teams</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Teams table with member assignments</p>
-          </CardContent>
-        </Card>
+        <TeamsTable />
       </div>
     </PortalLayout>
   );
@@ -124,18 +254,11 @@ export function AdminDepartmentsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Departments</h1>
-            <p className="text-muted-foreground">Manage organizational departments</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Add Department</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Departments</h1>
+          <p className="text-muted-foreground">Manage organizational departments</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Departments table with hierarchy</p>
-          </CardContent>
-        </Card>
+        <DepartmentsTable />
       </div>
     </PortalLayout>
   );
@@ -145,18 +268,11 @@ export function AdminDesignationsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Designations</h1>
-            <p className="text-muted-foreground">Manage job designations and titles</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Add Designation</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Designations</h1>
+          <p className="text-muted-foreground">Manage job designations and titles</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Designations table with levels</p>
-          </CardContent>
-        </Card>
+        <DesignationsTable />
       </div>
     </PortalLayout>
   );
@@ -166,18 +282,11 @@ export function AdminMeetingsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Meetings</h1>
-            <p className="text-muted-foreground">Schedule and manage team meetings</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Schedule Meeting</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Meetings</h1>
+          <p className="text-muted-foreground">Schedule and manage team meetings</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Meetings table with calendar integration</p>
-          </CardContent>
-        </Card>
+        <MeetingsTable />
       </div>
     </PortalLayout>
   );
@@ -187,18 +296,11 @@ export function AdminDocumentsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Documents</h1>
-            <p className="text-muted-foreground">Manage contracts, agreements, and files</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Upload Document</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Documents</h1>
+          <p className="text-muted-foreground">Manage contracts, agreements, and files</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Documents table with versioning</p>
-          </CardContent>
-        </Card>
+        <DocumentsTable />
       </div>
     </PortalLayout>
   );
@@ -207,14 +309,96 @@ export function AdminDocumentsPage() {
 export function AdminReportsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold">Reports</h1>
-          <p className="text-muted-foreground">Generate and view business reports</p>
+          <h1 className="text-2xl font-bold">Reports & Analytics</h1>
+          <p className="text-muted-foreground">View comprehensive business analytics and reports</p>
         </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Employees</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">127</p>
+              <p className="text-xs text-green-600 mt-1">↑ 5 new this month</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Active Projects</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">24</p>
+              <p className="text-xs text-blue-600 mt-1">↑ 3 in progress</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Revenue (YTD)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹2.4Cr</p>
+              <p className="text-xs text-green-600 mt-1">↑ 18% vs last year</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Avg Utilization</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">82%</p>
+              <p className="text-xs text-amber-600 mt-1">↓ 2% from last month</p>
+            </CardContent>
+          </Card>
+        </div>
+
         <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Reports dashboard with export options</p>
+          <CardHeader>
+            <CardTitle>Report Categories</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Employee Reports</p>
+                <p className="text-sm text-muted-foreground">Headcount, attendance, performance</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Project Reports</p>
+                <p className="text-sm text-muted-foreground">Status, timeline, budget tracking</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Financial Reports</p>
+                <p className="text-sm text-muted-foreground">Revenue, expenses, profit margin</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Client Reports</p>
+                <p className="text-sm text-muted-foreground">Satisfaction, contracts, invoices</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">HR Reports</p>
+                <p className="text-sm text-muted-foreground">Recruitment, payroll, training</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Custom Reports</p>
+                <p className="text-sm text-muted-foreground">Create your own reports</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Export Options</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex gap-2 flex-wrap">
+              <Button variant="outline">Export as PDF</Button>
+              <Button variant="outline">Export as Excel</Button>
+              <Button variant="outline">Email Report</Button>
+              <Button variant="outline">Schedule Report</Button>
+            </div>
           </CardContent>
         </Card>
       </div>
