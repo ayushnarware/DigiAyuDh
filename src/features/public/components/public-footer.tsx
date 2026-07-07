@@ -71,13 +71,13 @@ export function PublicFooter() {
             © {new Date().getFullYear()} {APP_CONFIG.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" aria-label="Twitter" className="text-muted-foreground hover:text-foreground">
+            <a href="https://x.com/DidiAyudh" aria-label="Twitter" className="text-muted-foreground hover:text-foreground">
               <Twitter className="size-5" />
             </a>
-            <a href="#" aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground">
+            <a href="https://www.linkedin.com/company/135225527" aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground">
               <Linkedin className="size-5" />
             </a>
-            <a href="#" aria-label="GitHub" className="text-muted-foreground hover:text-foreground">
+            <a href="https://github.com/orgs/DigiAyudh" aria-label="GitHub" className="text-muted-foreground hover:text-foreground">
               <Github className="size-5" />
             </a>
           </div>
