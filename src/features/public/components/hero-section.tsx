@@ -52,15 +52,15 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <Button variant="brand" size="lg" asChild >
+              <Button variant="brand" size="lg" asChild className='text-sm text-purple-400 hover:text-purple-300'>
                 <a href="#work">
                   Build my product
-                  <ArrowUpRight className="size-4 text-sm text-purple-400 hover:text-purple-300" />
+                  <ArrowUpRight className="size-4" />
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="#work" className='text-purple-400 hover:text-purple-300'>
-                  <Play className="size-4 text-sm " />
+                <a href="#work">
+                  <Play className="size-4" />
                   See our work
                 </a>
               </Button>
