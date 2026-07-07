@@ -52,8 +52,8 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <Button variant="brand" size="lg" asChild >
-                <a href="#work">
+              <Button variant="brand" size="lg" asChild>
+                <a href="#contact">
                   Build my product
                   <ArrowUpRight className="size-4" />
                 </a>
