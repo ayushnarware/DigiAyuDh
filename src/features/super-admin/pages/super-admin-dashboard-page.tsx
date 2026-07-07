@@ -1,6 +1,10 @@
-import { Zap, Users, Activity, TrendingUp } from 'lucide-react';
+import { Zap, Users, Activity, TrendingUp, Server, Database, Lock, Zap as Spark, BarChart3, PieChart, CheckCircle2, Clock } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { PremiumDashboardHeader } from '@/components/shared/premium-dashboard-header';
+import { ModernKPICard } from '@/components/shared/modern-kpi-card';
+import { ResponsiveDashboardGrid, ResponsiveChartsGrid, DashboardSection, DashboardContainer } from '@/components/shared/responsive-dashboard-grid';
 import { TenantsTable } from '@/features/super-admin/components/tenants-table';
 
 const superAdminNav = [
@@ -18,66 +22,197 @@ const superAdminNav = [
   { label: 'Settings', href: '/super-admin/settings' },
 ];
 
-const metrics = [
-  { label: 'Total Tenants', value: '12', icon: Zap, change: '+2 this month' },
-  { label: 'Platform Users', value: '1,248', icon: Users, change: '+145 new' },
-  { label: 'System Health', value: '99.9%', icon: Activity, change: 'All systems up' },
-  { label: 'MRR Growth', value: '₹20.4L', icon: TrendingUp, change: '↗ 23% vs last month' },
-];
-
 export default function SuperAdminDashboardPage() {
   return (
     <PortalLayout navItems={superAdminNav} portalName="Super Admin">
-      <div className="space-y-8">
-        <div>
-          <h1 className="text-2xl font-bold">Platform Dashboard</h1>
-          <p className="text-muted-foreground">System overview and platform analytics</p>
-        </div>
+      <PremiumDashboardHeader
+        title="Platform Control Center"
+        subtitle="Real-time platform monitoring and management"
+        companyName="DigiAyuDh Enterprise"
+        showClock={true}
+      />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m) => (
-            <Card key={m.label}>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  {m.label}
+      <DashboardContainer>
+        {/* Executive Overview */}
+        <DashboardSection
+          title="Platform Overview"
+          subtitle="Key metrics and platform health"
+        >
+          <ResponsiveDashboardGrid>
+            <ModernKPICard
+              title="Active Tenants"
+              value="12"
+              change={16.7}
+              changeLabel="2 new this month"
+              icon={Zap}
+              color="blue"
+              trend="up"
+              miniChart={true}
+              onClick={() => console.log('Navigate to companies')}
+            />
+            <ModernKPICard
+              title="Platform Users"
+              value="1,248"
+              change={13}
+              changeLabel="145 new users"
+              icon={Users}
+              color="purple"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="System Health"
+              value="99.9%"
+              change={0.1}
+              changeLabel="All systems operational"
+              icon={Activity}
+              color="green"
+              trend="neutral"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="MRR"
+              value="₹20.4L"
+              change={23}
+              changeLabel="Growing strong"
+              icon={TrendingUp}
+              color="cyan"
+              trend="up"
+              miniChart={true}
+            />
+          </ResponsiveDashboardGrid>
+        </DashboardSection>
+
+        {/* Charts Section */}
+        <DashboardSection title="Analytics" subtitle="Platform performance and growth trends">
+          <ResponsiveChartsGrid>
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-blue-600" />
+                  Revenue Trend
                 </CardTitle>
-                <m.icon className="size-4 text-purple-400" />
               </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-bold">{m.value}</p>
-                <p className="text-xs text-muted-foreground">{m.change}</p>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <BarChart3 className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for chart library integration</p>
+                </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>System Status</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {[
-                { name: 'API Server', status: 'Operational', uptime: '100%' },
-                { name: 'Database', status: 'Operational', uptime: '99.99%' },
-                { name: 'Cache Layer', status: 'Operational', uptime: '100%' },
-                { name: 'Email Service', status: 'Operational', uptime: '99.9%' },
-              ].map((item) => (
-                <div key={item.name} className="flex items-center justify-between rounded-lg border border-border/50 p-3">
-                  <p className="text-sm font-medium">{item.name}</p>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-muted-foreground">Uptime: {item.uptime}</span>
-                    <span className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-green-500" />
-                      {item.status}
-                    </span>
-                  </div>
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <PieChart className="w-5 h-5 text-purple-600" />
+                  Tenant Distribution
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <PieChart className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for chart library integration</p>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+              </CardContent>
+            </Card>
+          </ResponsiveChartsGrid>
+        </DashboardSection>
+
+        {/* System Status */}
+        <DashboardSection title="System Status" subtitle="Real-time infrastructure monitoring">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              { name: 'API Server', status: 'Operational', uptime: '100%', icon: Server, color: 'green' },
+              { name: 'Database', status: 'Operational', uptime: '99.99%', icon: Database, color: 'green' },
+              { name: 'Cache Layer', status: 'Operational', uptime: '100%', icon: Spark, color: 'green' },
+              { name: 'Security', status: 'Secure', uptime: '100%', icon: Lock, color: 'green' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <Card key={item.name} className="border hover:shadow-md transition-all cursor-pointer">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Icon className={`w-4 h-4 text-${item.color}-600`} />
+                          <p className="text-sm font-medium truncate">{item.name}</p>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Clock className="w-3 h-3" />
+                          <span>Uptime: {item.uptime}</span>
+                        </div>
+                      </div>
+                      <div className="flex-shrink-0 flex items-center gap-1">
+                        <span className={`w-2 h-2 rounded-full bg-${item.color}-500`} />
+                        <span className="text-xs font-medium text-muted-foreground">{item.status}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </DashboardSection>
+
+        {/* Quick Actions */}
+        <DashboardSection title="Quick Actions" subtitle="Frequently used operations">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Add Tenant', icon: Zap, color: 'bg-blue-50 hover:bg-blue-100 border-blue-200' },
+              { label: 'View Reports', icon: BarChart3, color: 'bg-purple-50 hover:bg-purple-100 border-purple-200' },
+              { label: 'Manage Admins', icon: Users, color: 'bg-green-50 hover:bg-green-100 border-green-200' },
+              { label: 'System Status', icon: Activity, color: 'bg-cyan-50 hover:bg-cyan-100 border-cyan-200' },
+            ].map((action) => {
+              const Icon = action.icon;
+              return (
+                <Button
+                  key={action.label}
+                  variant="outline"
+                  className={`h-24 flex flex-col items-center justify-center gap-2 ${action.color} transition-all`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="text-xs font-medium text-center">{action.label}</span>
+                </Button>
+              );
+            })}
+          </div>
+        </DashboardSection>
+
+        {/* Recent Activity */}
+        <DashboardSection title="Recent Activity" subtitle="Latest platform events">
+          <Card className="border">
+            <CardContent className="p-0">
+              <div className="space-y-1 divide-y divide-border">
+                {[
+                  { time: '2 hours ago', action: 'New tenant registered', company: 'Acme Corp', icon: CheckCircle2, color: 'text-green-600' },
+                  { time: '4 hours ago', action: 'API rate limit increased', company: 'System', icon: Spark, color: 'text-blue-600' },
+                  { time: '1 day ago', action: 'Security update applied', company: 'System', icon: Lock, color: 'text-purple-600' },
+                  { time: '2 days ago', action: 'Database backup completed', company: 'System', icon: Database, color: 'text-cyan-600' },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="p-4 hover:bg-muted/50 transition-colors flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3 min-w-0 flex-1">
+                        <Icon className={`w-5 h-5 flex-shrink-0 ${item.color}`} />
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium truncate">{item.action}</p>
+                          <p className="text-xs text-muted-foreground">{item.company}</p>
+                        </div>
+                      </div>
+                      <span className="text-xs text-muted-foreground flex-shrink-0 whitespace-nowrap">{item.time}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        </DashboardSection>
+
+        {/* Tenants Table */}
+        <DashboardSection title="Tenant Management" subtitle="Manage all platform tenants">
+          <TenantsTable />
+        </DashboardSection>
+      </DashboardContainer>
     </PortalLayout>
   );
 }

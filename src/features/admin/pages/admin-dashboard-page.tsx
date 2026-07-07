@@ -1,7 +1,10 @@
-import { FolderKanban, Users, TrendingUp } from 'lucide-react';
+import { FolderKanban, Users, TrendingUp, DollarSign, CheckCircle2, Clock, FileText, Briefcase } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { PremiumDashboardHeader } from '@/components/shared/premium-dashboard-header';
+import { ModernKPICard } from '@/components/shared/modern-kpi-card';
+import { ResponsiveDashboardGrid, ResponsiveChartsGrid, DashboardSection, DashboardContainer } from '@/components/shared/responsive-dashboard-grid';
 import { ClientsTable } from '@/features/admin/components/clients-table';
 import { ProjectsTable } from '@/features/admin/components/projects-table';
 import { EmployeesTable } from '@/features/admin/components/employees-table';
@@ -25,39 +28,168 @@ const adminNav = [
   { label: 'Settings', href: '/admin/settings' },
 ];
 
-const metrics = [
-  { label: 'Total Clients', value: '48', icon: Users, change: '+5 this month' },
-  { label: 'Active Projects', value: '24', icon: FolderKanban, change: '12 in progress' },
-  { label: 'Team Members', value: '16', icon: Users, change: '+2 new hires' },
-  { label: 'Revenue (MTD)', value: '₹12.4L', icon: TrendingUp, change: '↗ 18% vs last month' },
-];
-
 export default function AdminDashboardPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
-      <div className="space-y-8">
-        <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground">Overview of business metrics and operations</p>
-        </div>
+      <PremiumDashboardHeader
+        title="Company Operations Center"
+        subtitle="Real-time business overview and management"
+        companyName="Company Name"
+        showClock={true}
+      />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m) => (
-            <Card key={m.label}>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  {m.label}
-                </CardTitle>
-                <m.icon className="size-4 text-purple-400" />
+      <DashboardContainer>
+        {/* Key Metrics */}
+        <DashboardSection title="Company Overview" subtitle="Key business metrics and performance indicators">
+          <ResponsiveDashboardGrid>
+            <ModernKPICard
+              title="Total Clients"
+              value="48"
+              change={11.4}
+              changeLabel="5 new clients"
+              icon={Users}
+              color="blue"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Active Projects"
+              value="24"
+              change={20}
+              changeLabel="12 in progress"
+              icon={FolderKanban}
+              color="purple"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Team Members"
+              value="127"
+              change={1.6}
+              changeLabel="2 new hires"
+              icon={Users}
+              color="green"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Revenue (MTD)"
+              value="₹12.4L"
+              change={18}
+              changeLabel="Growing steady"
+              icon={DollarSign}
+              color="cyan"
+              trend="up"
+              miniChart={true}
+            />
+          </ResponsiveDashboardGrid>
+        </DashboardSection>
+
+        {/* Performance Charts */}
+        <DashboardSection title="Performance Metrics" subtitle="Business trends and analytics">
+          <ResponsiveChartsGrid>
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base">Project Timeline</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-bold">{m.value}</p>
-                <p className="text-xs text-muted-foreground">{m.change}</p>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <Clock className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for integration</p>
+                </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
-      </div>
+
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base">Client Growth</CardTitle>
+              </CardHeader>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <TrendingUp className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for integration</p>
+                </div>
+              </CardContent>
+            </Card>
+          </ResponsiveChartsGrid>
+        </DashboardSection>
+
+        {/* Quick Actions */}
+        <DashboardSection title="Quick Actions" subtitle="Frequently used operations">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Add Client', icon: Users, color: 'bg-blue-50 hover:bg-blue-100 border-blue-200' },
+              { label: 'New Project', icon: FolderKanban, color: 'bg-purple-50 hover:bg-purple-100 border-purple-200' },
+              { label: 'Team Member', icon: Users, color: 'bg-green-50 hover:bg-green-100 border-green-200' },
+              { label: 'Schedule Meeting', icon: Clock, color: 'bg-cyan-50 hover:bg-cyan-100 border-cyan-200' },
+            ].map((action) => {
+              const Icon = action.icon;
+              return (
+                <Button
+                  key={action.label}
+                  variant="outline"
+                  className={`h-24 flex flex-col items-center justify-center gap-2 ${action.color} transition-all`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="text-xs font-medium text-center">{action.label}</span>
+                </Button>
+              );
+            })}
+          </div>
+        </DashboardSection>
+
+        {/* Task Status Overview */}
+        <DashboardSection title="Task Status" subtitle="Current project and task metrics">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { label: 'Completed', value: '142', color: 'bg-green-50 border-green-200', icon: CheckCircle2, iconColor: 'text-green-600' },
+              { label: 'In Progress', value: '28', color: 'bg-blue-50 border-blue-200', icon: Clock, iconColor: 'text-blue-600' },
+              { label: 'Pending', value: '16', color: 'bg-orange-50 border-orange-200', icon: FileText, iconColor: 'text-orange-600' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <Card key={item.label} className={`border ${item.color}`}>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground">{item.label}</p>
+                        <p className="text-2xl font-bold mt-1">{item.value}</p>
+                      </div>
+                      <Icon className={`w-8 h-8 ${item.iconColor}`} />
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </DashboardSection>
+
+        {/* Management Summary */}
+        <DashboardSection title="Management Modules" subtitle="Quick access to core operations">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { label: 'Employees', icon: Users, href: '/admin/employees' },
+              { label: 'Projects', icon: FolderKanban, href: '/admin/projects' },
+              { label: 'Clients', icon: Briefcase, href: '/admin/clients' },
+              { label: 'Teams', icon: Users, href: '/admin/teams' },
+            ].map((module) => {
+              const Icon = module.icon;
+              return (
+                <Card key={module.label} className="border hover:shadow-md transition-all cursor-pointer">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-lg bg-muted">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <p className="font-medium">{module.label}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </DashboardSection>
+      </DashboardContainer>
     </PortalLayout>
   );
 }

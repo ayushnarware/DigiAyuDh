@@ -1,7 +1,10 @@
 import React from 'react';
-import { TrendingUp, DollarSign, FileText, CreditCard, AlertCircle } from 'lucide-react';
+import { TrendingUp, DollarSign, FileText, CreditCard, AlertCircle, BarChart3, PieChart } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { PremiumDashboardHeader } from '@/components/shared/premium-dashboard-header';
+import { ModernKPICard } from '@/components/shared/modern-kpi-card';
+import { ResponsiveDashboardGrid, ResponsiveChartsGrid, DashboardSection, DashboardContainer } from '@/components/shared/responsive-dashboard-grid';
 import { InvoicesTable } from '@/features/finance/components/invoices-table';
 
 const financeNav = [
@@ -11,40 +14,104 @@ const financeNav = [
   { label: 'Reports', href: '/finance/reports' },
 ];
 
-const metrics = [
-  { label: 'Total Revenue', value: '₹245.8L', icon: TrendingUp, change: '+12% this month' },
-  { label: 'Outstanding Invoices', value: '₹52.3L', icon: DollarSign, change: '8 invoices pending' },
-  { label: 'Paid Invoices', value: '₹193.5L', icon: FileText, change: '₹28.5L this month' },
-  { label: 'Pending Payments', value: '₹18.2L', icon: CreditCard, change: '3 payments due' },
-];
-
 export default function FinanceDashboardPage() {
   return (
     <PortalLayout navItems={financeNav} portalName="Finance Portal">
-      <div className="space-y-8">
-        <div>
-          <h1 className="text-2xl font-bold">Finance & Billing Dashboard</h1>
-          <p className="text-muted-foreground">Monitor invoices, payments, and financial reports</p>
-        </div>
+      <PremiumDashboardHeader
+        title="Financial Control Center"
+        subtitle="Revenue, invoices, and payment tracking"
+        companyName="Finance Operations"
+        showClock={true}
+      />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {metrics.map((m) => (
-            <Card key={m.label}>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  {m.label}
+      <DashboardContainer>
+        {/* Financial Overview */}
+        <DashboardSection title="Financial Overview" subtitle="Revenue, invoices, and cash flow metrics">
+          <ResponsiveDashboardGrid>
+            <ModernKPICard
+              title="Total Revenue"
+              value="₹245.8L"
+              change={12}
+              changeLabel="This month"
+              icon={TrendingUp}
+              color="green"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Outstanding Invoices"
+              value="₹52.3L"
+              change={-5}
+              changeLabel="8 invoices pending"
+              icon={DollarSign}
+              color="orange"
+              trend="down"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Paid Invoices"
+              value="₹193.5L"
+              change={18}
+              changeLabel="28.5L this month"
+              icon={FileText}
+              color="blue"
+              trend="up"
+              miniChart={true}
+            />
+            <ModernKPICard
+              title="Pending Payments"
+              value="₹18.2L"
+              change={-8}
+              changeLabel="3 payments due"
+              icon={CreditCard}
+              color="purple"
+              trend="down"
+              miniChart={true}
+            />
+          </ResponsiveDashboardGrid>
+        </DashboardSection>
+
+        {/* Financial Charts */}
+        <DashboardSection title="Financial Analytics" subtitle="Revenue trends and payment distribution">
+          <ResponsiveChartsGrid>
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-green-600" />
+                  Revenue Trend
                 </CardTitle>
-                <m.icon className="size-4 text-green-500" />
               </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-bold">{m.value}</p>
-                <p className="text-xs text-muted-foreground">{m.change}</p>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <BarChart3 className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for integration</p>
+                </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
 
-        <div className="grid gap-4 lg:grid-cols-2">
+            <Card className="border hover:shadow-md transition-shadow">
+              <CardHeader>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <PieChart className="w-5 h-5 text-purple-600" />
+                  Payment Status Distribution
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="h-64 flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <PieChart className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                  <p>Chart ready for integration</p>
+                </div>
+              </CardContent>
+            </Card>
+          </ResponsiveChartsGrid>
+        </DashboardSection>
+
+        {/* Invoices Management */}
+        <DashboardSection title="Invoice Management" subtitle="Manage and track all invoices">
+          <InvoicesTable />
+        </DashboardSection>
+
+        <div className="hidden lg:grid gap-4 lg:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle>Recent Invoices</CardTitle>
@@ -136,7 +203,7 @@ export default function FinanceDashboardPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </DashboardContainer>
     </PortalLayout>
   );
 }
