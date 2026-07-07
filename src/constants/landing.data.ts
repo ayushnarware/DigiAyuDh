@@ -272,11 +272,11 @@ export const testimonial: Testimonial = {
   id: 'simran',
   quote:
     "DigiAyudh didn't just build our website. They understood the business, simplified the customer journey and gave us a digital system we can actually grow with.",
-  author: 'Simran Kaur',
-  role: 'Founder',
-  company: 'Luméra Living',
-  avatar: 'SK',
-  metric: '+64%',
+  author: 'Ayush Narware',
+  role: 'Developer',
+  company: 'DigiAyudh',
+  avatar: 'AN',
+  metric: '+92%',
   metricLabel: 'conversion rate after launch',
 };
 
