@@ -313,7 +313,7 @@ export const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Work', href: '#work' },
   { label: 'Process', href: '#process' },
-  { label: 'Pricing', href: '#Contact' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export const footerLinks = {
