@@ -7,9 +7,15 @@ import { EmployeesTable } from '@/features/admin/components/employees-table';
 
 const adminNav = [
   { label: 'Dashboard', href: '/admin/dashboard' },
+  { label: 'Employees', href: '/admin/employees' },
   { label: 'Clients', href: '/admin/clients' },
   { label: 'Projects', href: '/admin/projects' },
-  { label: 'Employees', href: '/admin/employees' },
+  { label: 'Teams', href: '/admin/teams' },
+  { label: 'Departments', href: '/admin/departments' },
+  { label: 'Designations', href: '/admin/designations' },
+  { label: 'Meetings', href: '/admin/meetings' },
+  { label: 'Documents', href: '/admin/documents' },
+  { label: 'Reports', href: '/admin/reports' },
   { label: 'Settings', href: '/admin/settings' },
 ];
 
@@ -87,6 +93,139 @@ export function AdminEmployeesPage() {
           <p className="text-muted-foreground">Manage team members and assignments</p>
         </div>
         <EmployeesTable />
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function AdminTeamsPage() {
+  return (
+    <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Teams</h1>
+            <p className="text-muted-foreground">Manage project and functional teams</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Team
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Teams table with member assignments</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function AdminDepartmentsPage() {
+  return (
+    <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Departments</h1>
+            <p className="text-muted-foreground">Manage organizational departments</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Department
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Departments table with hierarchy</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function AdminDesignationsPage() {
+  return (
+    <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Designations</h1>
+            <p className="text-muted-foreground">Manage job designations and titles</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Add Designation
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Designations table with levels</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function AdminMeetingsPage() {
+  return (
+    <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Meetings</h1>
+            <p className="text-muted-foreground">Schedule and manage team meetings</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Schedule Meeting
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Meetings table with calendar integration</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function AdminDocumentsPage() {
+  return (
+    <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Documents</h1>
+            <p className="text-muted-foreground">Manage contracts, agreements, and files</p>
+          </div>
+          <button className="px-4 py-2 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700">
+            + Upload Document
+          </button>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Documents table with versioning</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PortalLayout>
+  );
+}
+
+export function AdminReportsPage() {
+  return (
+    <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Reports</h1>
+          <p className="text-muted-foreground">Generate and view business reports</p>
+        </div>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-center text-muted-foreground">Reports dashboard with export options</p>
+          </CardContent>
+        </Card>
       </div>
     </PortalLayout>
   );
