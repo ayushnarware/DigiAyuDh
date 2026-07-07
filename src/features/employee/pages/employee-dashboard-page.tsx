@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TasksTable } from '@/features/employee/components/tasks-table';
+import { EmployeeDocumentsRepository } from '@/features/employee/components/documents-repository';
 
 const employeeNav = [
   { label: 'Dashboard', href: '/employee/dashboard' },
@@ -808,17 +809,10 @@ export function EmployeeDocumentsPage() {
     <PortalLayout navItems={employeeNav} portalName="Employee Portal">
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold">Documents</h1>
-          <p className="text-muted-foreground">Your personal and employment documents</p>
+          <h1 className="text-2xl font-bold">Document Center</h1>
+          <p className="text-muted-foreground">Manage your personal and employment documents</p>
         </div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Document Files</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-center text-muted-foreground">Documents list with upload and download</p>
-          </CardContent>
-        </Card>
+        <EmployeeDocumentsRepository />
       </div>
     </PortalLayout>
   );

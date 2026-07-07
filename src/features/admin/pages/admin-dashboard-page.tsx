@@ -1,10 +1,15 @@
-import { FolderKanban, Users, TrendingUp, Plus } from 'lucide-react';
+import { FolderKanban, Users, TrendingUp } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ClientsTable } from '@/features/admin/components/clients-table';
 import { ProjectsTable } from '@/features/admin/components/projects-table';
 import { EmployeesTable } from '@/features/admin/components/employees-table';
+import { TeamsTable } from '@/features/admin/components/teams-table';
+import { DepartmentsTable } from '@/features/admin/components/departments-table';
+import { DesignationsTable } from '@/features/admin/components/designations-table';
+import { MeetingsTable } from '@/features/admin/components/meetings-table';
+import { DocumentsTable } from '@/features/admin/components/documents-table';
 
 const adminNav = [
   { label: 'Dashboard', href: '/admin/dashboard' },
@@ -103,18 +108,11 @@ export function AdminTeamsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Teams</h1>
-            <p className="text-muted-foreground">Manage project and functional teams</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Add Team</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Teams</h1>
+          <p className="text-muted-foreground">Manage project and functional teams</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Teams table with member assignments</p>
-          </CardContent>
-        </Card>
+        <TeamsTable />
       </div>
     </PortalLayout>
   );
@@ -124,18 +122,11 @@ export function AdminDepartmentsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Departments</h1>
-            <p className="text-muted-foreground">Manage organizational departments</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Add Department</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Departments</h1>
+          <p className="text-muted-foreground">Manage organizational departments</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Departments table with hierarchy</p>
-          </CardContent>
-        </Card>
+        <DepartmentsTable />
       </div>
     </PortalLayout>
   );
@@ -145,18 +136,11 @@ export function AdminDesignationsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Designations</h1>
-            <p className="text-muted-foreground">Manage job designations and titles</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Add Designation</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Designations</h1>
+          <p className="text-muted-foreground">Manage job designations and titles</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Designations table with levels</p>
-          </CardContent>
-        </Card>
+        <DesignationsTable />
       </div>
     </PortalLayout>
   );
@@ -166,18 +150,11 @@ export function AdminMeetingsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Meetings</h1>
-            <p className="text-muted-foreground">Schedule and manage team meetings</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Schedule Meeting</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Meetings</h1>
+          <p className="text-muted-foreground">Schedule and manage team meetings</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Meetings table with calendar integration</p>
-          </CardContent>
-        </Card>
+        <MeetingsTable />
       </div>
     </PortalLayout>
   );
@@ -187,18 +164,11 @@ export function AdminDocumentsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Documents</h1>
-            <p className="text-muted-foreground">Manage contracts, agreements, and files</p>
-          </div>
-          <Button icon={<Plus className="size-4" />}>Upload Document</Button>
+        <div>
+          <h1 className="text-2xl font-bold">Documents</h1>
+          <p className="text-muted-foreground">Manage contracts, agreements, and files</p>
         </div>
-        <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Documents table with versioning</p>
-          </CardContent>
-        </Card>
+        <DocumentsTable />
       </div>
     </PortalLayout>
   );
@@ -207,14 +177,96 @@ export function AdminDocumentsPage() {
 export function AdminReportsPage() {
   return (
     <PortalLayout navItems={adminNav} portalName="Admin Dashboard">
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div>
-          <h1 className="text-2xl font-bold">Reports</h1>
-          <p className="text-muted-foreground">Generate and view business reports</p>
+          <h1 className="text-2xl font-bold">Reports & Analytics</h1>
+          <p className="text-muted-foreground">View comprehensive business analytics and reports</p>
         </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Employees</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">127</p>
+              <p className="text-xs text-green-600 mt-1">↑ 5 new this month</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Active Projects</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">24</p>
+              <p className="text-xs text-blue-600 mt-1">↑ 3 in progress</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Total Revenue (YTD)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">₹2.4Cr</p>
+              <p className="text-xs text-green-600 mt-1">↑ 18% vs last year</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">Avg Utilization</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl font-bold">82%</p>
+              <p className="text-xs text-amber-600 mt-1">↓ 2% from last month</p>
+            </CardContent>
+          </Card>
+        </div>
+
         <Card>
-          <CardContent className="pt-6">
-            <p className="text-center text-muted-foreground">Reports dashboard with export options</p>
+          <CardHeader>
+            <CardTitle>Report Categories</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Employee Reports</p>
+                <p className="text-sm text-muted-foreground">Headcount, attendance, performance</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Project Reports</p>
+                <p className="text-sm text-muted-foreground">Status, timeline, budget tracking</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Financial Reports</p>
+                <p className="text-sm text-muted-foreground">Revenue, expenses, profit margin</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Client Reports</p>
+                <p className="text-sm text-muted-foreground">Satisfaction, contracts, invoices</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">HR Reports</p>
+                <p className="text-sm text-muted-foreground">Recruitment, payroll, training</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:bg-muted cursor-pointer">
+                <p className="font-medium">Custom Reports</p>
+                <p className="text-sm text-muted-foreground">Create your own reports</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Export Options</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex gap-2 flex-wrap">
+              <Button variant="outline">Export as PDF</Button>
+              <Button variant="outline">Export as Excel</Button>
+              <Button variant="outline">Email Report</Button>
+              <Button variant="outline">Schedule Report</Button>
+            </div>
           </CardContent>
         </Card>
       </div>

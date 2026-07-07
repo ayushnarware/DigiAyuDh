@@ -2,6 +2,7 @@ import React from 'react';
 import { TrendingUp, DollarSign, FileText, CreditCard, AlertCircle } from 'lucide-react';
 import { PortalLayout } from '@/layouts/portal-layout';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { InvoicesTable } from '@/features/finance/components/invoices-table';
 
 const financeNav = [
   { label: 'Dashboard', href: '/finance/dashboard' },
@@ -141,124 +142,14 @@ export default function FinanceDashboardPage() {
 }
 
 export function FinanceInvoicesPage() {
-  const [showAddForm, setShowAddForm] = React.useState(false);
-
-  const invoices = [
-    { id: 'INV-2024-001', client: 'Acme Corporation', amount: '₹5.2L', date: 'Mar 28, 2024', dueDate: 'Apr 4, 2024', status: 'Paid', items: 3 },
-    { id: 'INV-2024-002', client: 'Tech Solutions Ltd', amount: '₹3.8L', date: 'Mar 25, 2024', dueDate: 'Apr 5, 2024', status: 'Pending', items: 2 },
-    { id: 'INV-2024-003', client: 'Global Industries', amount: '₹8.5L', date: 'Mar 22, 2024', dueDate: 'Mar 31, 2024', status: 'Overdue', items: 5 },
-    { id: 'INV-2024-004', client: 'Digital Ventures', amount: '₹2.1L', date: 'Mar 20, 2024', dueDate: 'Mar 28, 2024', status: 'Paid', items: 1 },
-    { id: 'INV-2024-005', client: 'Innovation Hub', amount: '₹4.5L', date: 'Mar 18, 2024', dueDate: 'Apr 15, 2024', status: 'Pending', items: 4 },
-  ];
-
   return (
     <PortalLayout navItems={financeNav} portalName="Finance Portal">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Invoices</h1>
-            <p className="text-muted-foreground">Create and manage client invoices</p>
-          </div>
-          <button onClick={() => setShowAddForm(!showAddForm)} className="px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700">
-            + Create Invoice
-          </button>
+        <div>
+          <h1 className="text-2xl font-bold">Invoices</h1>
+          <p className="text-muted-foreground">Create and manage client invoices</p>
         </div>
-
-        {showAddForm && (
-          <Card className="border-green-200 bg-green-50">
-            <CardHeader>
-              <CardTitle>Create New Invoice</CardTitle>
-              <CardDescription>Generate a new invoice for a client</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Invoice Number</label>
-                    <input type="text" placeholder="INV-2024-XXX" className="w-full px-4 py-2 rounded-lg border border-input bg-background" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Select Client</label>
-                    <select className="w-full px-4 py-2 rounded-lg border border-input bg-background">
-                      <option>Acme Corporation</option>
-                      <option>Tech Solutions Ltd</option>
-                      <option>Global Industries</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Invoice Date</label>
-                    <input type="date" className="w-full px-4 py-2 rounded-lg border border-input bg-background" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Due Date</label>
-                    <input type="date" className="w-full px-4 py-2 rounded-lg border border-input bg-background" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Invoice Amount</label>
-                  <input type="text" placeholder="₹0" className="w-full px-4 py-2 rounded-lg border border-input bg-background" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Description/Items</label>
-                  <textarea placeholder="List of services or products..." className="w-full px-4 py-2 rounded-lg border border-input bg-background" rows={3} />
-                </div>
-                <div className="flex justify-end gap-2 pt-4 border-t">
-                  <button onClick={() => setShowAddForm(false)} className="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted">
-                    Cancel
-                  </button>
-                  <button className="px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700">
-                    Create Invoice
-                  </button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-
-        <Card>
-          <CardHeader>
-            <CardTitle>All Invoices</CardTitle>
-            <CardDescription>Complete list of your invoices</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="border-b border-border">
-                  <tr>
-                    <th className="text-left py-3 px-2 font-medium text-muted-foreground">Invoice #</th>
-                    <th className="text-left py-3 px-2 font-medium text-muted-foreground">Client</th>
-                    <th className="text-left py-3 px-2 font-medium text-muted-foreground">Amount</th>
-                    <th className="text-left py-3 px-2 font-medium text-muted-foreground">Date</th>
-                    <th className="text-left py-3 px-2 font-medium text-muted-foreground">Due Date</th>
-                    <th className="text-left py-3 px-2 font-medium text-muted-foreground">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {invoices.map((invoice) => (
-                    <tr key={invoice.id} className="border-b border-border/50 hover:bg-muted/30">
-                      <td className="py-3 px-2 font-medium">{invoice.id}</td>
-                      <td className="py-3 px-2">{invoice.client}</td>
-                      <td className="py-3 px-2 font-semibold">{invoice.amount}</td>
-                      <td className="py-3 px-2 text-muted-foreground">{invoice.date}</td>
-                      <td className="py-3 px-2 text-muted-foreground">{invoice.dueDate}</td>
-                      <td className="py-3 px-2">
-                        <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${
-                          invoice.status === 'Paid' ? 'bg-green-50 text-green-700' :
-                          invoice.status === 'Pending' ? 'bg-yellow-50 text-yellow-700' :
-                          'bg-red-50 text-red-700'
-                        }`}>
-                          {invoice.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
+        <InvoicesTable />
       </div>
     </PortalLayout>
   );
