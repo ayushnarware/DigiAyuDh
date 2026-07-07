@@ -10,9 +10,13 @@ export function PublicFooter() {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link to="/" className="flex items-center gap-2">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-purple-600 text-sm font-bold text-white">
-                DA
-              </div>
+              <div className="flex size-8 items-center justify-center rounded-lg">
+            <img
+              src="/DigiAyudhlogo.jpeg"
+              alt="DigiAyudh Logo"
+              className="h-8 w-8 rounded-lg object-cover"
+            />
+          </div>
               <span className="text-lg font-bold">{APP_CONFIG.name}</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">{APP_CONFIG.description}</p>
